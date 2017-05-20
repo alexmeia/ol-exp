@@ -1,11 +1,11 @@
-var iconFeature = new ol.Feature({
+var markerOne = new ol.Feature({
   geometry: new ol.geom.Point([11.68767, 43.9847398]),
   name: 'Null Island',
   population: 4000,
   rainfall: 500
 });
 
-var iconFeatureTwo = new ol.Feature({
+var markerTwo = new ol.Feature({
   geometry: new ol.geom.Point(ol.proj.transform([11.6703, 43.1857], 'EPSG:4326', 'EPSG:3857')),
   name: 'Da qualche parte in Italia',
   population: 4000,
@@ -22,11 +22,11 @@ var iconStyle = new ol.style.Style({
   }))
 });
 
-iconFeature.setStyle(iconStyle);
-iconFeatureTwo.setStyle(iconStyle);
+markerOne.setStyle(iconStyle);
+markerTwo.setStyle(iconStyle);
 
 var vectorSource = new ol.source.Vector({
-  features: [iconFeature, iconFeatureTwo]
+  features: [markerOne, markerTwo]
 });
 
 var vectorLayer = new ol.layer.Vector({
