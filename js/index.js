@@ -1,3 +1,6 @@
+var heightPx = ($(window).height() - 200) + "px";
+$("#map").css("height", heightPx)
+
 var markerOne = new ol.Feature({
   geometry: new ol.geom.Point([11.68767, 43.9847398]),
   name: 'Null Island',
@@ -13,7 +16,7 @@ var markerTwo = new ol.Feature({
 });
 
 var iconStyle = new ol.style.Style({
-  image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+  image: new ol.style.Icon(/** @type {olx.style.IconOptions} */({
     anchor: [0.5, 22],
     anchorXUnits: 'fraction',
     anchorYUnits: 'pixels',
@@ -40,7 +43,7 @@ var rasterLayer = new ol.layer.Tile({
 });
 
 var osmLayer = new ol.layer.Tile({
-    source: new ol.source.OSM()
+  source: new ol.source.OSM()
 });
 
 var map = new ol.Map({
@@ -56,17 +59,17 @@ var element = document.getElementById('popup');
 
 var popup = new ol.Overlay({
   element: element,
-  positioning: 'bottom-center',
+  positioning: 'top-center',
   stopEvent: false
 });
 map.addOverlay(popup);
 
 // display popup on click
-map.on('click', function(evt) {
+map.on('click', function (evt) {
   var feature = map.forEachFeatureAtPixel(evt.pixel,
-      function(feature, layer) {
-        return feature;
-      });
+    function (feature, layer) {
+      return feature;
+    });
   if (feature) {
     var geometry = feature.getGeometry();
     var coord = geometry.getCoordinates();
@@ -83,9 +86,9 @@ map.on('click', function(evt) {
 });
 
 // change mouse cursor when over marker
-$(map.getViewport()).on('mousemove', function(e) {
+$(map.getViewport()).on('mousemove', function (e) {
   var pixel = map.getEventPixel(e.originalEvent);
-  var hit = map.forEachFeatureAtPixel(pixel, function(feature, layer) {
+  var hit = map.forEachFeatureAtPixel(pixel, function (feature, layer) {
     return true;
   });
   if (hit) {
